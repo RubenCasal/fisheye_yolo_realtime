@@ -17,10 +17,7 @@ class YoloDetectorNode(Node):
         super().__init__("yolo_detector_node")
         self.bridge = CvBridge()
 
-        self.declare_parameter("model", "general")  
-        model = self.get_parameter("model").get_parameter_value().string_value
-
-    
+     
         model_path = os.path.join(os.path.dirname(__file__), "yolov9m.onnx")
         self.image_size = (640, 640)
 
