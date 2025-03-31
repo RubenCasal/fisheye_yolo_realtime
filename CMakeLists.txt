@@ -71,7 +71,6 @@ ament_python_install_package(${PROJECT_NAME})
 # === Install Python executables ===
 install(PROGRAMS
   scripts/yolo_detector.py
-  scripts/yolo_detector_optimized.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
@@ -83,7 +82,6 @@ install(DIRECTORY launch
 # === Install YOLO model files (.pt and .onnx) ===
 install(FILES
   yolov9m.onnx
-  yolov9m_person_detection.onnx
   DESTINATION share/${PROJECT_NAME}
 )
 
