@@ -24,7 +24,6 @@ def generate_launch_description():
             package='yolo_face_detection',
             executable='yolo_detector.py',  
             output='screen',
-            parameters=[{'model': model}],
             arguments=[os.path.join(os.getenv('ROS_WS', '/home/rcasal/ros2_ws'), 'install/yolo_face_detection/lib/yolo_face_detection/yolo_detector.py')]
         ),
     ])

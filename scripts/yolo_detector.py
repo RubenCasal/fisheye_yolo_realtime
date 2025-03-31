@@ -20,13 +20,9 @@ class YoloDetectorNode(Node):
         self.declare_parameter("model", "general")  
         model = self.get_parameter("model").get_parameter_value().string_value
 
-        if model == "person":
-            model_path = os.path.join(os.path.dirname(__file__), "yolov9m_person_detection.onnx")
-            self.image_size = (608, 608)
-
-        else:
-            model_path = os.path.join(os.path.dirname(__file__), "yolov9m.onnx")
-            self.image_size = (640, 640)
+    
+        model_path = os.path.join(os.path.dirname(__file__), "yolov9m.onnx")
+        self.image_size = (640, 640)
 
         # Load trained YOLOv9 model
         self.model = YOLO(model_path, task='detect')
