@@ -9,7 +9,8 @@ import cv2
 import numpy as np
 import os
 from rclpy.qos import qos_profile_sensor_data
-
+from threading import Thread
+from queue import Queue
 
 class YoloDetectorNode(Node):
     def __init__(self):
@@ -21,13 +22,14 @@ class YoloDetectorNode(Node):
 
         if model == "person":
             model_path = os.path.join(os.path.dirname(__file__), "yolov9m_person_detection.onnx")
+            self.image_size = (608, 608)
 
         else:
             model_path = os.path.join(os.path.dirname(__file__), "yolov9m.onnx")
+            self.image_size = (640, 640)
 
         # Load trained YOLOv9 model
-        self.model = YOLO(model_path)
-
+        self.model = YOLO(model_path, task='detect')
         # Subscribe to fisheye camera topic
         self.subscription = self.create_subscription(
             Image,
@@ -53,7 +55,7 @@ class YoloDetectorNode(Node):
         source=input_image,
         conf=0.5,
         iou=0.4,
-        imgsz=(608, 608),  # force internal shape
+        imgsz=self.image_size,  # force internal shape
         verbose=False
 )
         # Overlay predictions on original input

@@ -71,6 +71,7 @@ ament_python_install_package(${PROJECT_NAME})
 # === Install Python executables ===
 install(PROGRAMS
   scripts/yolo_detector.py
+  scripts/yolo_detector_optimized.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

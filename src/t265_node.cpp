@@ -33,7 +33,7 @@ public:
 
         // Timer to periodically publish data
         timer_ = this->create_wall_timer(
-            std::chrono::milliseconds(50),
+            std::chrono::milliseconds(10),
             std::bind(&T265Node::timer_callback, this));
 
         RCLCPP_INFO(this->get_logger(), "T265 node started successfully.");
